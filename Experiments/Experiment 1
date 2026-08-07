@@ -37,8 +37,8 @@
       <p class="hero__subtitle">Demonstration of Inline, Internal, and External JavaScript</p>
 
       <div class="hero__meta">
-        <div class="meta__item"><span class="meta__label">Name</span><span class="meta__value">Soumya Mehar</span></div>
-        <div class="meta__item"><span class="meta__label">PRN</span><span class="meta__value">24070521200</span></div>
+        <div class="meta__item"><span class="meta__label">Name</span><span class="meta__value">Arman Meshram</span></div>
+        <div class="meta__item"><span class="meta__label">PRN</span><span class="meta__value">24070521143</span></div>
         <div class="meta__item"><span class="meta__label">Branch</span><span class="meta__value">CSE</span></div>
         <div class="meta__item"><span class="meta__label">Year</span><span class="meta__value">Third Year B.Tech</span></div>
       </div>
@@ -64,7 +64,7 @@
         <!-- Inline JS: code lives right inside the onclick attribute -->
         <button
           class="btn btn--primary"
-          onclick="document.getElementById('inlineOutput').innerText = 'Welcome to JavaScript Laboratory, Shriya Sanjay Yerane!'; document.getElementById('inlineOutput').classList.add('show');"
+          onclick="document.getElementById('inlineOutput').innerText = 'Welcome to JavaScript Laboratory, Arman Meshram!'; document.getElementById('inlineOutput').classList.add('show');"
         >
           Inline JavaScript (Welcome)
         </button>
@@ -188,8 +188,8 @@
     // Internal JavaScript: displays the student's information
     function showStudentInfo() {
       const info = `
-        <strong>Name:</strong> Shriya Sanjay Yerane<br>
-        <strong>PRN:</strong> 24070521197<br>
+        <strong>Name:</strong> Arman Meshram<br>
+        <strong>PRN:</strong> 24070521143<br>
         <strong>Branch:</strong> Computer Science Engineering<br>
         <strong>Year:</strong> Third Year B.Tech<br>
         <strong>College:</strong> Symbiosis Institute of Technology, Nagpur
