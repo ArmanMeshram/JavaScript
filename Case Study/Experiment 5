@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Array Study Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .input-section {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 1;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .clear-btn {
+            background-color: #e74c3c;
+        }
+        .clear-btn:hover {
+            background-color: #c0392b;
+        }
+        .output-box {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Requested Heading change below -->
+        <h1>JS array study dashbaord</h1>
+        <p>Enter a number below to add it to your array and see methods trigger live.</p>
+        
+        <!-- User Input UI -->
+        <div class="input-section">
+            <input type="number" id="num-input" placeholder="Type a number...">
+            <button onclick="addNumber()">Add Number</button>
+            <button class="clear-btn" onclick="clearArray()">Reset</button>
+        </div>
+
+        <h2>Current Array Status</h2>
+        <div id="array-display" class="output-box">Array is empty.</div>
+
+        <h2>Case Study Results</h2>
+        <div id="case-study-output" class="output-box">Waiting for numbers...</div>
+        
+        <h2>Advanced Array Iterators</h2>
+        <div id="methods-output" class="output-box">Waiting for numbers...</div>
+    </div>
+
+    <script>
+        // Global array to store numbers given by the user
+        let userNumbers = [];
+
+        // Function to capture input and manipulate array
+        function addNumber() {
+            const inputField = document.getElementById("num-input");
+            const inputValue = inputField.value;
+
+            // Validation: ensure the user entered a valid number
+            if (inputValue === "") {
+                alert("Please type a valid number first!");
+                return;
+            }
+
+            // Convert string input to actual number and use push()
+            const parsedNumber = Number(inputValue);
+            userNumbers.push(parsedNumber);
+
+            // Clear input box for next entry
+            inputField.value = "";
+            inputField.focus();
+
+            // Run calculations and refresh view
+            updateDashboard();
+        }
+
+        // Function to reset the application
+        function clearArray() {
+            userNumbers = []; // Clear array
+            updateDashboard();
+        }
+
+        // Master function to recalculate loop values and array transformations
+        function updateDashboard() {
+            const arrayDisplay = document.getElementById("array-display");
+            const caseStudyOutput = document.getElementById("case-study-output");
+            const methodsOutput = document.getElementById("methods-output");
+
+            // Handle empty array scenario gracefully
+            if (userNumbers.length === 0) {
+                arrayDisplay.innerText = "Array is empty.";
+                caseStudyOutput.innerText = "Waiting for numbers...";
+                methodsOutput.innerText = "Waiting for numbers...";
+                return;
+            }
+
+            // 1. Display Current Array
+            arrayDisplay.innerText = `[ ${userNumbers.join(", ")} ]`;
+
+            // 2. Case Study Loop Logic: Finding Min & Max
+            let min = userNumbers[0];
+            let max = userNumbers[0];
+
+            for (let i = 1; i < userNumbers.length; i++) {
+                if (userNumbers[i] > max) {
+                    max = userNumbers[i];
+                }
+                if (userNumbers[i] < min) {
+                    min = userNumbers[i];
+                }
+            }
+
+            caseStudyOutput.innerText = `Maximum Value: ${max}\nMinimum Value: ${min}`;
+
+            // 3. Array Iterator Methods Live Calculation
+            // map() - Double the inputs
+            const doubled = userNumbers.map(n => n * 2);
+            
+            // filter() - Keep numbers greater than 10
+            const greaterThanTen = userNumbers.filter(n => n > 10);
+            
+            // reduce() - Sum of numbers
+            const grandTotal = userNumbers.reduce((acc, curr) => acc + curr, 0);
+
+            methodsOutput.innerText = 
+                `map() (Doubled values):   [ ${doubled.join(", ")} ]\n` +
+                `filter() (Values > 10):    [ ${greaterThanTen.join(", ")} ]\n` +
+                `reduce() (Total Sum):     ${grandTotal}`;
+        }
+
+        // Allow pressing "Enter" key to submit number
+        document.getElementById("num-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addNumber();
+            }
+        });
+    </script>
+</body>
+</html>
